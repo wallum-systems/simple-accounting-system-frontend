@@ -1,8 +1,23 @@
-import Vue from 'vue'
-import App from './App.vue'
+import {createApp} from 'vue/dist/vue.esm-bundler'
+// import axios from "axios";
+import {createRouter, createWebHashHistory} from 'vue-router';
+// import {DefaultApi} from "../generated-sources/openapi/dist/api";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
+import RecordNew from "@/components/RecordNew";
+import Home from "@/components/Home";
+import App from "@/App";
 
-Vue.config.productionTip = false
+const routes = [
+    {path: '/', component: Home},
+    {path: '/record/new', component: RecordNew},
+]
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+const router = createRouter({
+    history: createWebHashHistory(),
+    routes,
+})
+
+const app = createApp(App)
+app.use(router)
+app.mount('#app')
